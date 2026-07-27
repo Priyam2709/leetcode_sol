@@ -1,7 +1,8 @@
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
@@ -18,7 +19,7 @@ class Solution:
             second.next = first
             prev.next = second
             
-            # Move the prev pointer to the end of the swapped pair
+            # Move the pointer forward for the next pair
             prev = first
             
         return dummy.next
