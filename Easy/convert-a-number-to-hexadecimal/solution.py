@@ -3,15 +3,15 @@ class Solution:
         if num == 0:
             return "0"
         
-        # Convert to a 32-bit unsigned integer to handle two's complement for negatives
-        num &= 0xffffffff
+        # Convert to 32-bit unsigned integer to handle negative numbers via two's complement
+        num = num & 0xffffffff
         
-        hex_map = "0123456789abcdef"
+        hex_chars = "0123456789abcdef"
         result = []
         
         while num > 0:
-            digit = num & 15  # Equivalent to num % 16
-            result.append(hex_map[digit])
-            num >>= 4         # Equivalent to num // 16
+            digit = num & 0xf
+            result.append(hex_chars[digit])
+            num >>= 4
             
         return "".join(reversed(result))
