@@ -1,11 +1,10 @@
 # [Easy] Fizz Buzz
 
 ## Complexity
-Time Complexity: O(n) because we iterate from 1 to n exactly once and perform constant-time arithmetic and string operations inside the loop.
-Space Complexity: O(1) auxiliary space (excluding the output list which takes O(n) space).
+Time Complexity: O(n) because we iterate from 1 to n exactly once, performing constant time O(1) operations in each iteration. Space Complexity: O(1) auxiliary space (ignoring the space required for the output list of size n).
 
 ## Explanation
-We iterate through the numbers from 1 to n. For each number, we use conditional statements to check divisibility. We check divisibility by 15 first (since any number divisible by 15 is divisible by both 3 and 5) to append 'FizzBuzz'. Next, we check divisibility by 3 for 'Fizz' and by 5 for 'Buzz'. If none of these conditions are met, we convert the number to a string and append it to our result list.
+The solution iterates through numbers from 1 to n. For each number, it checks divisibility. If a number is divisible by both 3 and 5 (which is equivalent to being divisible by 15), we append 'FizzBuzz'. If it is only divisible by 3, we append 'Fizz'. If it is only divisible by 5, we append 'Buzz'. Otherwise, we convert the integer to a string and append it to the result list.
 
 ## Solution
 ```python
