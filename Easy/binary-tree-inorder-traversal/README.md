@@ -1,38 +1,25 @@
 # [Easy] Binary Tree Inorder Traversal
 
 ## Complexity
-Time Complexity: O(N), where N is the number of nodes in the binary tree, because each node is visited at most twice (once when pushed, once when popped).
-Space Complexity: O(H), where H is the height of the tree, representing the maximum size of the stack. In the worst case of a skewed tree, this is O(N), and in the best case of a balanced tree, it is O(log N).
+Time Complexity: O(N), where N is the number of nodes in the binary tree. Each node is pushed onto and popped from the stack exactly once.
+Space Complexity: O(H), where H is the height of the tree, used by the stack. In the worst case of a skewed tree, the height is O(N). For a balanced tree, the space complexity is O(log N).
 
 ## Explanation
-This solution implements an iterative inorder traversal (Left -> Root -> Right) using an explicit stack to mimic the call stack of a recursive solution. We initialize a pointer 'curr' at the root of the tree. In the outer loop, we traverse down to the leftmost node of the current subtree, pushing each visited node onto the stack. Once we hit a null child, we pop the top node from the stack, record its value, and then move to its right child to repeat the process. This continues until all nodes have been visited and the stack is empty.
+This solution performs an iterative inorder traversal (Left-Root-Right) of a binary tree using an auxiliary stack, satisfying the follow-up requirement to avoid recursion. We maintain a pointer 'curr' initialized to the root node. We push all left descendants of 'curr' onto the stack until 'curr' becomes null. Then, we pop the top element from the stack, visit it by appending its value to the result list, and transition 'curr' to its right child. This sequence of operations guarantees that nodes are processed in the correct order.
 
 ## Solution
 ```python
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
 class Solution:
-    def inorderTraversal(self, root: TreeNode) -> list[int]:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result = []
         stack = []
         curr = root
-        
-        while curr is not None or stack:
-            # Reach the left most Node of the current Node
-            while curr is not None:
+        while curr or stack:
+            while curr:
                 stack.append(curr)
                 curr = curr.left
-            
-            # Backtrack from the empty subtree and visit the node
             curr = stack.pop()
             result.append(curr.val)
-            
-            # We have visited the node and its left subtree. Now, it's the right subtree's turn
             curr = curr.right
-            
         return result
 ```
